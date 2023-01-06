@@ -1,17 +1,15 @@
 #include <iostream>
 #include <vector>
-
+#include "column.hpp"
 
 
 
 
 int main(){
  std::cout << "Hi Mike\n";
- std::vector<int> vec({2,3,4,5});
- 
- for (int &i : vec){
-    std::cout << i << "\n";
- }
+
+ Column c(5, 0, 10);
+ c.print();
 }
 
 
