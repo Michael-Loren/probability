@@ -1,26 +1,22 @@
-#include <vector>
-#include <map>
-#include <random>
-#include <algorithm>
+
 #include "column.hpp"
 using namespace std;
-
-Column::Column(int size, int low, int high) : col(size){
-
+        /** 
+         * @brief Construct a new Column object
+         * 
+         * @param size Number of rows
+         * @param weights Weights of values
+         * @param values Values to be chosen from
+         */
+    Column::Column(int size, const vector<double>& weights, const vector<int>& values) : col(size)  {
+        
     mt19937 rng(random_device{}());
-    uniform_int_distribution<int> dist(low, high);
-    generate(col.begin(), col.end(), [&] { return dist(rng); });
+    discrete_distribution<int> dist(weights.begin(), weights.end());
+    
+    generate(col.begin(), col.end(), [&] { return values[dist(rng)]; });
     
 }
-/*
 
-```c++
-
-code stuff
-
-```
-
-*/
 void Column::print(){
     for (auto &i : col){
         cout << i << "\n";

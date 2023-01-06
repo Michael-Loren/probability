@@ -1,4 +1,10 @@
 #include <iostream>
+#include <vector>
+
+#include <map>
+#include <random>
+#include <algorithm>
+using std::vector;
 class Column{
     public:
         Column();
@@ -12,6 +18,15 @@ class Column{
 
         
         Column(int size, int low, int high);
+
+        /**
+         * @brief Construct a new Column object
+         * 
+         * @param size - Number of rows
+         * @param weights - Weights of values
+         * @param values - Values to be chosen from
+         */
+        Column(int size, const vector<double>& weights, const vector<int>& values);
         void print();
 
     private:

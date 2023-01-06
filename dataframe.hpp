@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <map>
-#include 'column.hpp'
+#include "column.hpp"
 
 
 using namespace std;
@@ -19,15 +19,19 @@ class Dataframe{
 
     void colremove();
 
-    void rowadd(int[colnum] row);
+    void rowadd(vector<int> row);
 
-    void rowremover();
+    void rowremove();
+
+    void boolarray();
+
+    void probability(int colnum, int subset);
 
 
     //void tablegen(string[] colnamearray, vector<map<int,float>> genArray)
 
 
     private:
-        vector<column> cols;
+        vector<Column> cols;
         int colnum;
     }; 
