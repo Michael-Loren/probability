@@ -14,6 +14,8 @@ using namespace std;
     discrete_distribution<int> dist(weights.begin(), weights.end());
     
     generate(col.begin(), col.end(), [&] { return values[dist(rng)]; });
+
+    //no return here
     
 }
 
