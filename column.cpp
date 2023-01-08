@@ -73,7 +73,6 @@ vector<bool> Column::operator==(int value)
     return mask;
 }
 
-
 vector<bool> Column::operator!=(int value)
 {
     vector<bool> mask;
