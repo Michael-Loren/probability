@@ -31,11 +31,13 @@ class Column{
          * @param values - Values to be chosen from
          */
         Column(int size, const vector<double>& weights, const vector<int>& values);
-
+        
         Column(vector<int> colvec);
 
         //Bool Masking and Operator Functions
         
+        operator vector<int>();
+
         vector<bool> operator>(int value);
         vector<bool> operator<(int value);
         vector<bool> operator>=(int value);

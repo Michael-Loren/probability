@@ -21,8 +21,15 @@ int main(){
 
 
     c[c < 11].print();
+    
+    auto vec = static_cast<vector<int>>(c);
 
+    for (auto &i : vec){
+        i++;
+    }
 
+    Column c(vec);
+    c.print();
 
 
     // std::sort(i.begin(), i.end(), [&](int a, int b) {return a > b; });
