@@ -1,7 +1,8 @@
 #include <iostream>
 #include <vector>
 #include "column.hpp"
-
+#include <algorithm>
+#include <typeinfo>
 
 
 
@@ -13,4 +14,15 @@ int main(){
 
     Column c(10, d, i);
     c.print();
+
+    auto something = 3;
+    std::cout << typeid(d).name() << std::endl;
+
+
+    // std::sort(i.begin(), i.end(), [&](int a, int b) {return a > b; });
+
+    // for (auto &a : i){
+    //     std::cout << a << "\n";
+    // }
+
 }

@@ -64,12 +64,35 @@ bool Column::operator<=(int value)
 
 bool Column::operator==(int value)
 {
+
+    //[weather==3]
+    //df == value
+
+    //doubles, ints
+    
+    
     bool* mask = new bool[size];
     for (int i = 0; i < size; i++) {
         mask[i] = (col[i] == value);
     }
     return mask;
 }
+
+/*
+op function 1
+op function 2
+op function 3...
+
+
+op function{
+    type 1
+    type 2
+    type 3
+}
+
+
+*/
+
 
 bool Column::operator!=(int value)
 {
@@ -80,9 +103,23 @@ bool Column::operator!=(int value)
     return mask;
 }
 
-int* Column::operator[](bool mask)
+void Column::print()
 {
-    int selected[size];
+    for (auto &i : col)
+    {
+        cout << i << " "; 
+    }
+    cout << '\n';
+}
+
+//df[numbirds>1]
+
+
+// filter(df, [](auto arg) {return arg < 5;})
+
+int* Column::operator[](bool mask[])
+{
+    int* selected = new int[size];
     int count = 0;
     for (int i = 0; i < size; i++) {
         if (mask[i]) {
@@ -91,12 +128,4 @@ int* Column::operator[](bool mask)
         }
     }
     return selected;
-}
-
-void Column::print()
-{
-    for (auto &i : col)
-    {
-        cout << i << "\n";
-    }
 }

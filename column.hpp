@@ -1,10 +1,14 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include <map>
 #include <random>
 #include <algorithm>
 using std::vector;
+
+
+
 class Column{
     public:
         Column();
@@ -30,16 +34,17 @@ class Column{
 
 
         //Bool Masking and Operator Functions
-
+        
         bool operator>(int value);
         bool operator<(int value);
         bool operator>=(int value);
         bool operator<=(int value);
+        
         bool operator==(int value);
         bool operator!=(int value);
 
 
-        int* operator[](bool mask);
+        int* operator[](bool mask[]);
 
 
 
@@ -51,4 +56,6 @@ class Column{
 
         // Column size
         int size;
+
+        std::string name;
 };
