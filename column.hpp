@@ -27,8 +27,28 @@ class Column{
          * @param values - Values to be chosen from
          */
         Column(int size, const vector<double>& weights, const vector<int>& values);
+
+
+        //Bool Masking and Operator Functions
+
+        bool operator>(int value);
+        bool operator<(int value);
+        bool operator>=(int value);
+        bool operator<=(int value);
+        bool operator==(int value);
+        bool operator!=(int value);
+
+
+        int* operator[](bool mask);
+
+
+
         void print();
 
     private:
-       std::vector<int> col;
+        // Column values
+        vector<int> col;
+
+        // Column size
+        int size;
 };

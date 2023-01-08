@@ -9,7 +9,6 @@ using namespace std;
 
 class Dataframe{
     Dataframe();
-    Dataframe();
 
     // Print the full dataframe in a format that makes sense
     void print();
@@ -25,7 +24,15 @@ class Dataframe{
 
     void boolarray();
 
-    void probability(int colnum, int subset);
+    
+    // Given a condition, query a subset of the larger dataframe and return the Dataframe
+    Dataframe subset();
+
+    // Probabilities can be manipulated in another file.
+
+    //void probability(int colnum, int subset);
+
+    //void probabilityAgivenB(const vector<int> colA, const vector<int> varA, const vector<int> colB, const vector<int> varB);
 
 
     //void tablegen(string[] colnamearray, vector<map<int,float>> genArray)
