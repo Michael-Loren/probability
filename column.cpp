@@ -22,14 +22,16 @@ Column::Column(int csize, const vector<double> &weights, const vector<int> &valu
     generate(colvec.begin(), colvec.end(), [&] { return values[dist(rng)]; });
 }
 
+// Column Constructor 
 Column::Column(vector<int> vec) : colvec(vec), size(vec.size()) {}
 
-// Column Constructor 
-
-// Boolean Mask Logic.
+// Return vector from Column call
 Column::operator std::vector<int>(){
     return colvec;
 }
+
+// Boolean Mask Logic.
+
 vector<bool> Column::operator>(int value)
 {
     vector<bool> mask;
