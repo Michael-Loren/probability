@@ -17,12 +17,10 @@ int main(){
 
 
     
-    auto ret = c.operator<(10);
+   
 
-    for (bool i : ret){
-    std::cout << i << ' ';
-    }
 
+    c[c < 11].print();
 
 
 

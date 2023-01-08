@@ -22,6 +22,8 @@ Column::Column(int csize, const vector<double> &weights, const vector<int> &valu
     generate(colvec.begin(), colvec.end(), [&] { return values[dist(rng)]; });
 }
 
+Column::Column(vector<int> vec) : colvec(vec), size(vec.size()) {}
+
 // Column Constructor 
 
 // Boolean Mask Logic.
@@ -97,11 +99,11 @@ void Column::print()
 
 // filter(df, [](auto arg) {return arg < 5;})
 
-vector<int> Column::operator[](vector<bool> mask)
+Column Column::operator[](vector<bool> mask)
 {
     vector<int> selected;
 
     // For indexer i, if bool is true, we add that values from colvec to selected.
     for(int i = 0; i < size; i++) if (mask[i]) selected.push_back(colvec[i]);
-    return selected;
+    return Column(selected);
 }

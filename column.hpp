@@ -21,17 +21,18 @@ class Column{
 
 
         
-        Column(int size, int low, int high);
+        
 
         /**
-         * @brief Construct a new Column object
+         * @brief Construct a new Column object with random values
          * 
-         * @param size - Number of rows
+         * @param size - Number of rows to generate
          * @param weights - Weights of values
          * @param values - Values to be chosen from
          */
         Column(int size, const vector<double>& weights, const vector<int>& values);
 
+        Column(vector<int> colvec);
 
         //Bool Masking and Operator Functions
         
@@ -43,7 +44,7 @@ class Column{
         vector<bool> operator!=(int value);
 
 
-        vector<int> operator[](vector<bool> mask);
+        Column operator[](vector<bool> mask);
 
 
 
