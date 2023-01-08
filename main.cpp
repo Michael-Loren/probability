@@ -15,8 +15,16 @@ int main(){
     Column c(10, d, i);
     c.print();
 
-    auto something = 3;
-    std::cout << typeid(d).name() << std::endl;
+
+    
+    auto ret = c.operator<(10);
+
+    for (bool i : ret){
+    std::cout << i << ' ';
+    }
+
+
+
 
 
     // std::sort(i.begin(), i.end(), [&](int a, int b) {return a > b; });

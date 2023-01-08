@@ -10,7 +10,7 @@ using namespace std;
  */
 
 // Column Constructor - Random Values
-Column::Column(int csize, const vector<double> &weights, const vector<int> &values) : col(csize), size(csize)
+Column::Column(int csize, const vector<double> &weights, const vector<int> &values) : colvec(csize), size(csize)
 {
     // Initialize a random number generator
     mt19937 rng(random_device{}());
@@ -18,94 +18,72 @@ Column::Column(int csize, const vector<double> &weights, const vector<int> &valu
     // Initialize the discrete distribution
     discrete_distribution<int> dist(weights.begin(), weights.end());
 
-    // Generate and Return values for every element of col
-    generate(col.begin(), col.end(), [&] { return values[dist(rng)]; });
+    // Generate and Return values for every element of colvec
+    generate(colvec.begin(), colvec.end(), [&] { return values[dist(rng)]; });
 }
 
 // Column Constructor 
 
 // Boolean Mask Logic.
 
-bool Column::operator>(int value)
+vector<bool> Column::operator>(int value)
 {
-    bool* mask = new bool[size];
+    vector<bool> mask;
     for (int i = 0; i < size; i++) {
-        mask[i] = (col[i] > value);
+        mask.push_back(colvec[i] > value);
     }
     return mask;
 }
 
-bool Column::operator<(int value)
+vector<bool> Column::operator<(int value)
 {
-    bool* mask = new bool[size];
+    vector<bool> mask;
     for (int i = 0; i < size; i++) {
-        mask[i] = (col[i] <= value);
+        mask.push_back(colvec[i] < value);
     }
     return mask;
 }
 
-bool Column::operator>=(int value)
+vector<bool> Column::operator>=(int value)
 {
-    bool* mask = new bool[size];
+    vector<bool> mask;
     for (int i = 0; i < size; i++) {
-        mask[i] = (col[i] > value);
+        mask.push_back(colvec[i] >= value);
     }
     return mask;
 }
 
-bool Column::operator<=(int value)
+vector<bool> Column::operator<=(int value)
 {
-    bool* mask = new bool[size];
+    vector<bool> mask;
     for (int i = 0; i < size; i++) {
-        mask[i] = (col[i] <= value);
+        mask.push_back(colvec[i] <= value);
     }
     return mask;
 }
 
-bool Column::operator==(int value)
+vector<bool> Column::operator==(int value)
 {
-
-    //[weather==3]
-    //df == value
-
-    //doubles, ints
-    
-    
-    bool* mask = new bool[size];
+    vector<bool> mask;
     for (int i = 0; i < size; i++) {
-        mask[i] = (col[i] == value);
+        mask.push_back(colvec[i] == value);
     }
     return mask;
 }
 
-/*
-op function 1
-op function 2
-op function 3...
 
-
-op function{
-    type 1
-    type 2
-    type 3
-}
-
-
-*/
-
-
-bool Column::operator!=(int value)
+vector<bool> Column::operator!=(int value)
 {
-    bool* mask = new bool[size];
+    vector<bool> mask;
     for (int i = 0; i < size; i++) {
-        mask[i] = (col[i] != value);
+        mask.push_back(colvec[i] != value);
     }
     return mask;
 }
 
 void Column::print()
 {
-    for (auto &i : col)
+    for (auto &i : colvec)
     {
         cout << i << " "; 
     }
@@ -114,18 +92,16 @@ void Column::print()
 
 //df[numbirds>1]
 
+//numbirds>1 -> {true, false, true, ...}
+//df[numbirds>1] -> the desired rows.
 
 // filter(df, [](auto arg) {return arg < 5;})
 
-int* Column::operator[](bool mask[])
+vector<int> Column::operator[](vector<bool> mask)
 {
-    int* selected = new int[size];
-    int count = 0;
-    for (int i = 0; i < size; i++) {
-        if (mask[i]) {
-            selected[count] = col[i];
-            count++;
-        }
-    }
+    vector<int> selected;
+
+    // For indexer i, if bool is true, we add that values from colvec to selected.
+    for(int i = 0; i < size; i++) if (mask[i]) selected.push_back(colvec[i]);
     return selected;
 }

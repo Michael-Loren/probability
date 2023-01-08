@@ -35,16 +35,15 @@ class Column{
 
         //Bool Masking and Operator Functions
         
-        bool operator>(int value);
-        bool operator<(int value);
-        bool operator>=(int value);
-        bool operator<=(int value);
-        
-        bool operator==(int value);
-        bool operator!=(int value);
+        vector<bool> operator>(int value);
+        vector<bool> operator<(int value);
+        vector<bool> operator>=(int value);
+        vector<bool> operator<=(int value);
+        vector<bool> operator==(int value);
+        vector<bool> operator!=(int value);
 
 
-        int* operator[](bool mask[]);
+        vector<int> operator[](vector<bool> mask);
 
 
 
@@ -52,7 +51,7 @@ class Column{
 
     private:
         // Column values
-        vector<int> col;
+        vector<int> colvec;
 
         // Column size
         int size;
