@@ -27,7 +27,9 @@ Column::Column(vector<int> vec) : colvec(vec), size(vec.size()) {}
 // Column Constructor 
 
 // Boolean Mask Logic.
-
+Column::operator std::vector<int>(){
+    return colvec;
+}
 vector<bool> Column::operator>(int value)
 {
     vector<bool> mask;
