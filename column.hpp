@@ -31,13 +31,14 @@ class Column{
          * @param values - Values to be chosen from
          */
         Column(int size, const vector<double>& weights, const vector<int>& values);
-        
+
+        // Make a colun from a vector input.
         Column(vector<int> colvec);
 
-        //Bool Masking and Operator Functions
-        
+        // When casted to a vector, return the vector elements in the Column object.
         operator vector<int>();
 
+        // Bool Masking and Operator Functions
         vector<bool> operator>(int value);
         vector<bool> operator<(int value);
         vector<bool> operator>=(int value);
@@ -46,7 +47,11 @@ class Column{
         vector<bool> operator!=(int value);
 
 
+        // Return Elements that meet an operator condition.
         Column operator[](vector<bool> mask);
+
+        // Return rows {1, 2, 3, 4}
+        Column operator[](vector<int> rows);
 
 
 

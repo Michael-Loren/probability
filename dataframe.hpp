@@ -18,6 +18,17 @@ class Dataframe{
 
     void colremove();
 
+    Dataframe operator[][](vector<bool> mask, vector<string> colnames);
+
+
+    // Df['newcol'] - if a new string is created, we create a new col and add to the dataframe - empty by default of size col
+    Dataframe operator[](string newcol);
+
+    /*Df['newcol'] = Column object - we fill the empty dataframe of size rownum with elements from the column object.
+    
+    */
+    operator Column();
+
     void rowadd(vector<int> row);
 
     void rowremove();
@@ -39,6 +50,12 @@ class Dataframe{
 
 
     private:
+
+        //Vector of columns
         vector<Column> cols;
+        // number of Columns in Cols
         int colnum;
+
+        //number of rows in each col
+        int rownum;
     }; 
