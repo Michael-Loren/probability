@@ -59,7 +59,7 @@ class Column{
 
     private:
         // Column values
-        vector<int> colvec;
+        vector<int> rows;
 
         // Column size
         int size;

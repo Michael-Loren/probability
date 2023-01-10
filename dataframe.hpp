@@ -8,36 +8,49 @@
 using namespace std;
 
 class Dataframe{
+
+    // Constructors
+
     Dataframe();
+
+    // Create a dataframe with a certain number of rows and columns - random
+    Dataframe(int rowNum, int colNum);
+
+    // Create a dataframe from a 2d matrix of integers. 
+    Dataframe(vector<vector<int>> DataMatrix);
 
     // Print the full dataframe in a format that makes sense
     void print();
 
-    // Add a single column
-    //void coladd(string colname, map<int,float> generator);
+    // Add a single column to the colarray
+    void coladd(Column column, string colname);
 
-    void colremove();
-
-    Dataframe operator[][](vector<bool> mask, vector<string> colnames);
-
-
-    // Df['newcol'] - if a new string is created, we create a new col and add to the dataframe - empty by default of size col
-    Dataframe operator[](string newcol);
-
+    // I'm shaky on this
     /*Df['newcol'] = Column object - we fill the empty dataframe of size rownum with elements from the column object.
     
     */
+
+    void colremove(vector<string> newcol);
+
+
+    // Getters
+
+    // Df['newcol'] - if a new string is created, we create a new col and add to the dataframe - empty by default of size col
+    Dataframe operator[](vector<string> newcol);
+
+
+    
     operator Column();
 
     void rowadd(vector<int> row);
 
-    void rowremove();
-
-    void boolarray();
-
+    //void rowremove(int rownum);
     
     // Given a condition, query a subset of the larger dataframe and return the Dataframe
-    Dataframe subset();
+
+    // Using operator overloads...
+    //***
+    //Dataframe& subset(colname > 5);
 
     // Probabilities can be manipulated in another file.
 
@@ -53,6 +66,7 @@ class Dataframe{
 
         //Vector of columns
         vector<Column> cols;
+
         // number of Columns in Cols
         int colnum;
 
