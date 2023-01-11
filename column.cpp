@@ -2,7 +2,7 @@
 #include "column.hpp"
 #include <chrono>
 using namespace std;
-int Column::count = 0;
+int Column::count = random_device{}();
 
 /**
  * @brief Construct a new Column object

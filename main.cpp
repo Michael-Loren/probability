@@ -24,12 +24,7 @@ int main(){
     for (auto a : static_cast<vector<Column>>(df)){
         a.print();
     }
-    df = Dataframe(15, 4, d, i);
-    
-
-    for (auto a : static_cast<vector<Column>>(df)){
-        a.print();
-    }
+   
     // std::sort(i.begin(), i.end(), [&](int a, int b) {return a > b; });
 
     // for (auto &a : i){
