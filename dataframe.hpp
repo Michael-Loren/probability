@@ -9,12 +9,16 @@ using namespace std;
 
 class Dataframe{
 
-    // Constructors
+    //----------------------CONSTRUCTORS-----------------------------
 
     Dataframe();
 
     // Create a dataframe with a certain number of rows and columns - random
     Dataframe(int rowNum, int colNum);
+
+    Dataframe(int rowNum, int colNum, vector<vector<double>> weights, vector<vector<int>> values, vector<string> names);
+
+    Dataframe(int rowNum, int colNum, vector<double> weights, vector<int> values);
 
     // Create a dataframe from a 2d matrix of integers. 
     Dataframe(vector<vector<int>> DataMatrix);
@@ -22,44 +26,28 @@ class Dataframe{
     // Print the full dataframe in a format that makes sense
     void print();
 
-    // Add a single column to the colarray
-    void coladd(Column column, string colname);
 
-    // I'm shaky on this
-    /*Df['newcol'] = Column object - we fill the empty dataframe of size rownum with elements from the column object.
-    
-    */
+    //------------------------OPERATIONS-----------------------------
+    // Append a single column to the colarray
+    void operator+=(Column column);
 
-    void colremove(vector<string> newcol);
-
-
-    // Getters
-
-    // Df['newcol'] - if a new string is created, we create a new col and add to the dataframe - empty by default of size col
-    Dataframe operator[](vector<string> newcol);
-
+    //insert column to specific index in dataframe
+    void insert(int index, Column column);
 
     
-    operator Column();
+    void colremove(string colname);
+    void colremove(int index);
+    
+    
+
+    // Return the Column that matches the name
+    Column operator[](string name);
+
+    // Return the dataframe of rows for which the mask is true.
+    Dataframe operator[](vector<bool> mask);
 
     void rowadd(vector<int> row);
 
-    //void rowremove(int rownum);
-    
-    // Given a condition, query a subset of the larger dataframe and return the Dataframe
-
-    // Using operator overloads...
-    //***
-    //Dataframe& subset(colname > 5);
-
-    // Probabilities can be manipulated in another file.
-
-    //void probability(int colnum, int subset);
-
-    //void probabilityAgivenB(const vector<int> colA, const vector<int> varA, const vector<int> colB, const vector<int> varB);
-
-
-    //void tablegen(string[] colnamearray, vector<map<int,float>> genArray)
 
 
     private:

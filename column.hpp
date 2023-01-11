@@ -6,9 +6,7 @@
 #include <random>
 #include <algorithm>
 using std::vector;
-
-
-
+using std::string;
 class Column{
     public:
         Column();
@@ -30,9 +28,9 @@ class Column{
          * @param weights - Weights of values
          * @param values - Values to be chosen from
          */
-        Column(int size, const vector<double>& weights, const vector<int>& values);
+        Column(int size, const vector<double>& weights, const vector<int>& values, string name);
 
-        // Make a colun from a vector input.
+        // Make a colunm from a vector input.
         Column(vector<int> colvec);
 
         // When casted to a vector, return the vector elements in the Column object.
@@ -53,6 +51,9 @@ class Column{
         // Return rows {1, 2, 3, 4}
         Column operator[](vector<int> rows);
 
+        // Return the name of the column
+        string name();
+
 
 
         void print();
@@ -64,5 +65,5 @@ class Column{
         // Column size
         int size;
 
-        std::string name;
+        std::string colname;
 };

@@ -10,7 +10,7 @@ using namespace std;
  */
 
 // Column Constructor - Random Values
-Column::Column(int csize, const vector<double> &weights, const vector<int> &values) : rows(csize), size(csize)
+Column::Column(int csize, const vector<double> &weights, const vector<int> &values, string name = "") : rows(csize), size(csize), colname(name)
 {
     // Initialize a random number generator
     mt19937 rng(random_device{}());
@@ -103,8 +103,6 @@ void Column::print()
 Column Column::operator[](vector<int> rows)
 {
     vector<int> selected;
-
-    // ***
     for(auto &i: rows) selected.push_back(rows[i]);
     return Column(selected);
 
@@ -126,4 +124,9 @@ Column Column::operator[](vector<bool> mask)
     // For indexer i, if bool is true, we add that values from colvec to selected.
     for(int i = 0; i < size; i++) if (mask[i]) selected.push_back(rows[i]);
     return Column(selected);
+}
+
+
+string Column::name(){
+    return colname;
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "column.hpp"
+#include "dataframe.hpp"
 #include <algorithm>
 #include <typeinfo>
 
@@ -12,24 +13,16 @@ int main(){
     std::vector<double> d({0.33, 0.33, 0.33});
     std::vector<int> i({5,10,15});
 
-    Column c(10, d, i);
+    Column c(10, d, i, "mycol");
+    
     c.print();
 
+    std::cout << c.name();
 
+    Dataframe df();
     
    
 
-
-    c[c < 11].print();
-    
-    auto vec = static_cast<vector<int>>(c);
-
-    for (auto &i : vec){
-        i++;
-    }
-
-    Column c(vec);
-    c.print();
 
 
     // std::sort(i.begin(), i.end(), [&](int a, int b) {return a > b; });
