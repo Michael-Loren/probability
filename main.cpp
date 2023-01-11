@@ -7,6 +7,26 @@
 
 using namespace std;
 using namespace pandas;
+
+
+// double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+//     double pB = (double)df[conditionB].getrows() / (double)df.getrows();
+//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
+//     double pAgivenB = pAintB/pB;
+//     return pAgivenB;
+// }
+// double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+//     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
+//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
+//     double pBgivenA = pAintB/pA;
+//     return pBgivenA;
+// }
+// double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
+//     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
+//     double pB = (double)df[conditionB].getrows() / (double)df.getrows();
+//     double pAgivenB = pBgivenA * pA/pB;
+//     return pAgivenB;
+// }
 int main(){
     std::cout << "Hi Mike\n";
 
@@ -36,22 +56,26 @@ int main(){
  
     Dataframe df(10, 4, d, i);
     df.insert(2, c);
-    for (auto a : static_cast<vector<Column>>(df)){
-        cout << a.name() << ' ';
-        a.print();
-    }
+    df.print();
 
-    auto something = df["2"];
-    cout << "------------------\n";
-    something.print();
-    vector<bool> conditionA = df["2"] > 5;
+   
+
+    cout << "+++++++++++++++++++++++\n";
 
 
-    vector<bool> conditionB = df["3"] < 10;
+    vector<bool> conditionA = df["2"] == 5;
+
+
+    vector<bool> conditionB = df["3"] == 10;
+
+
+    cout << "-----------df[conditionA]---------------------\n";
     for (auto i : conditionA){
         cout << i << " ";
     }
     cout << endl;
+    cout << "------------df[conditionB]--------------------\n";
+
     for (auto i : conditionB){
         cout << i << " ";
     }
@@ -59,35 +83,31 @@ int main(){
     
     vector<bool> conditionC = pandas::vecAND(conditionA, conditionB);
     
-    c[conditionA].print();
-    c[conditionB].print();
-    
+
+    // df[conditionA].print();
+
+    // df[conditionB .print();
+    cout << "------------df[conditionC]--------------------\n";
+
     for (auto i : conditionC){
         cout << i << " ";
     }
     cout << endl;
 
-    double prob = (double)c[conditionC].getsize() / (double)c.getsize();
+    double prob = (double)df[conditionC].getrows() / (double)df.getrows();
     cout << prob << endl;
+
+    // double probability = probAgivenB(df, conditionA, conditionB);
+    // cout << probability << endl;
    
 }
 
-// double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
-//     double pB = (double)df[conditionB].getsize() / (double)df.getsize();
-//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getsize()/ (bool) df.getsize();
-//     double pAgivenB = pAintB/pB;
-//     return pAgivenB;
-// }
-// double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
-//     double pA = (double)df[conditionA].getsize() / (double)df.getsize();
-//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getsize()/ (bool) df.getsize();
-//     double pBgivenA = pAintB/pA;
-//     return pBgivenA;
-// }
-// double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
-//     double pA = (double)df[conditionA].getsize() / (double)df.getsize();
-//     double pB = (double)df[conditionB].getsize() / (double)df.getsize();
-//     pAgivenB = pBgivenA * pA/pB;
-//     return pAgivenB;
-// }
+
+
+
+// P(A = 5 | B = 15)
+
+
+// P(A|B) = P(AintB)/P(B) = P(A and B) / P(B)
+
 

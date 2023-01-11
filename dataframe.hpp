@@ -53,6 +53,10 @@ class Dataframe{
     Dataframe operator[](vector<bool> mask);
 
     void rowadd(vector<int> row);
+    void remove(int index);
+
+    int getrows();
+    int getcols();
 
 
 

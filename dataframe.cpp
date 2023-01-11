@@ -81,15 +81,16 @@ Column Dataframe::operator[](string name)
     // We iterate across cols
     vector<Column>::iterator c;
 
-    for(Column &c : cols){
-        if(c.name() == name){
-            return c;
+    for(Column &col : cols){
+        if(col.name() == name){
+            return col;
         }
     }
+    // Return empty column
     return Column();
 }
 
-// Mask represents each row of dataframe
+// Mask represents each column of dataframe
 Dataframe Dataframe::operator[](vector<bool> mask){
     vector<Column> selected;
 
@@ -97,8 +98,8 @@ Dataframe Dataframe::operator[](vector<bool> mask){
         // Rows for which the mask evaluates true for any given column.
         selected.push_back(c[mask]);
     }
-
-    return selected;
+    // Call vector<Column> constructor and cast to Dataframe
+    return Dataframe(selected);
     
     // For indexer i, if bool is true, we add that values from colvec to selected.
     // for(int i = 0; i < rownum; i++) if (mask[i]) selected.push_back(rows[i]);
@@ -108,11 +109,37 @@ Dataframe Dataframe::operator[](vector<bool> mask){
 
 void Dataframe::operator+=(Column column){
     cols.push_back(column);
+    colnum++;
 }
+
 
 
 void Dataframe::insert(int index, Column col){
     cols.insert(cols.begin() + index, col);
+    colnum++;
 }
+
+void Dataframe::remove(int index){
+    cols.erase(cols.begin()+index);
+    colnum--;
+}
+
+int Dataframe::getrows(){
+    return rownum;
+}
+
+int Dataframe::getcols(){
+    return colnum;
+}
+
+void Dataframe::print(){
+    for (Column col : cols){
+        if(!col.name().empty())
+            cout << col.name() << ": ";
+        col.print();
+    }
+    cout << endl;
+}
+
 
 
