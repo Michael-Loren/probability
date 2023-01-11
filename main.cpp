@@ -6,7 +6,7 @@
 #include <typeinfo>
 
 using namespace std;
-
+using namespace pandas;
 int main(){
     std::cout << "Hi Mike\n";
 
@@ -69,15 +69,25 @@ int main(){
 
     double prob = (double)c[conditionC].getsize() / (double)c.getsize();
     cout << prob << endl;
-    
-
-
    
 }
 
-// def pAgivenB(dataset, conditionA, conditionB):
-//     pB = len(dataset[conditionB])/len(dataset)
-//     pAintB = len(dataset[conditionA & conditionB])/len(dataset)
-//     pAgivenB = pAintB/pB
-//     return pAgivenB
+// double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+//     double pB = (double)df[conditionB].getsize() / (double)df.getsize();
+//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getsize()/ (bool) df.getsize();
+//     double pAgivenB = pAintB/pB;
+//     return pAgivenB;
+// }
+// double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+//     double pA = (double)df[conditionA].getsize() / (double)df.getsize();
+//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getsize()/ (bool) df.getsize();
+//     double pBgivenA = pAintB/pA;
+//     return pBgivenA;
+// };
+// double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
+//     double pA = (double)df[conditionA].getsize() / (double)df.getsize();
+//     double pB = (double)df[conditionB].getsize() / (double)df.getsize();
+//     pAgivenB = pBgivenA * pA/pB;
+//     return pAgivenB;
+// };
 
