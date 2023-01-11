@@ -1,3 +1,5 @@
+#ifndef DATAFRAME_HPP
+#define DATAFRAME_HPP
 #include <iostream>
 #include <vector>
 #include <string>
@@ -7,6 +9,7 @@
 
 using namespace std;
 
+namespace pandas{
 class Dataframe{
 
     //----------------------CONSTRUCTORS-----------------------------
@@ -19,6 +22,8 @@ class Dataframe{
     Dataframe(int rowNum, int colNum, vector<vector<double>> weights, vector<vector<int>> values, vector<string> names);
 
     Dataframe(int rowNum, int colNum, vector<double> weights, vector<int> values);
+
+    Dataframe(vector<Column> newcols); 
 
     // Create a dataframe from a 2d matrix of integers. 
     Dataframe(vector<vector<int>> DataMatrix);
@@ -48,6 +53,10 @@ class Dataframe{
     Dataframe operator[](vector<bool> mask);
 
     void rowadd(vector<int> row);
+    void remove(int index);
+
+    int getrows();
+    int getcols();
 
 
 
@@ -62,3 +71,5 @@ class Dataframe{
         //number of rows in each col
         int rownum;
     }; 
+}
+#endif
