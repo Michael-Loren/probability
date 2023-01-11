@@ -70,15 +70,14 @@ int main(){
     double prob = (double)c[conditionC].getsize() / (double)c.getsize();
     cout << prob << endl;
     
-    
 
-    
-
-
-
-  
-   
 
    
 }
+
+// def pAgivenB(dataset, conditionA, conditionB):
+//     pB = len(dataset[conditionB])/len(dataset)
+//     pAintB = len(dataset[conditionA & conditionB])/len(dataset)
+//     pAgivenB = pAintB/pB
+//     return pAgivenB
 

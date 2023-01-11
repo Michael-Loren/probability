@@ -1,3 +1,5 @@
+#ifndef PANDAS_HPP
+#define PANDAS_HPP
 #include <vector>
 #include <algorithm>
 #include "dataframe.hpp"
@@ -10,3 +12,4 @@ namespace pandas{
     static std::vector<bool> vecEQ(vector<bool> &a, vector<bool> &b);
     static std::vector<bool> vecNEQ(vector<bool> &a, vector<bool> &b);
  }
+#endif

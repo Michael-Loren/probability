@@ -1,3 +1,6 @@
+#ifndef COLUMN_HPP
+#define COLUMN_HPP
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -75,3 +78,5 @@ class Column{
         static int count;
         
 };
+
+#endif

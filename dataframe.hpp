@@ -1,3 +1,5 @@
+#ifndef DATAFRAME_HPP
+#define DATAFRAME_HPP
 #include <iostream>
 #include <vector>
 #include <string>
@@ -64,3 +66,5 @@ class Dataframe{
         //number of rows in each col
         int rownum;
     }; 
+
+#endif
