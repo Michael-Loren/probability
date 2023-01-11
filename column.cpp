@@ -1,6 +1,9 @@
 
 #include "column.hpp"
+#include <chrono>
 using namespace std;
+int Column::count = 0;
+
 /**
  * @brief Construct a new Column object
  *
@@ -9,11 +12,14 @@ using namespace std;
  * @param values Values to be chosen from
  */
 
+//default constructor (empty column)
+Column::Column(){count++;}
 // Column Constructor - Random Values
 Column::Column(int csize, const vector<double> &weights, const vector<int> &values, string name = "") : rows(csize), size(csize), colname(name)
 {
+    
     // Initialize a random number generator
-    mt19937 rng(random_device{}());
+    mt19937 rng(++Column::count);
 
     // Initialize the discrete distribution
     discrete_distribution<int> dist(weights.begin(), weights.end());
@@ -23,7 +29,7 @@ Column::Column(int csize, const vector<double> &weights, const vector<int> &valu
 }
 
 // Column Constructor 
-Column::Column(vector<int> vec) : rows(vec), size(vec.size()) {}
+Column::Column(vector<int> vec) : rows(vec), size(vec.size()) {count++;}
 
 // Return vector from Column call
 Column::operator std::vector<int>(){

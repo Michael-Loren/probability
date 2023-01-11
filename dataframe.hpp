@@ -10,7 +10,7 @@ using namespace std;
 class Dataframe{
 
     //----------------------CONSTRUCTORS-----------------------------
-
+    public:
     Dataframe();
 
     // Create a dataframe with a certain number of rows and columns - random
@@ -34,6 +34,7 @@ class Dataframe{
     //insert column to specific index in dataframe
     void insert(int index, Column column);
 
+    operator vector<Column>();
     
     void colremove(string colname);
     void colremove(int index);

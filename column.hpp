@@ -5,6 +5,8 @@
 #include <map>
 #include <random>
 #include <algorithm>
+
+
 using std::vector;
 using std::string;
 class Column{
@@ -57,7 +59,7 @@ class Column{
 
 
         void print();
-
+    
     private:
         // Column values
         vector<int> rows;
@@ -66,4 +68,8 @@ class Column{
         int size;
 
         std::string colname;
+        
+        //for random number seed because i'm too lazy to use an entropic seed
+        static int count;
+        
 };

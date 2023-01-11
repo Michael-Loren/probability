@@ -49,15 +49,18 @@ Dataframe::Dataframe(int rowNum, int colNum, vector<vector<double>> weights, vec
 
 
 //create dataframe with same random col distribution
-// Dataframe::Dataframe(int rowNum, int colNum, vector<double> weights, vector<int> values) : colnum(colNum), rownum(rowNum)
-// {
-//     for (int i = 0; i < colnum; i++){
-//         cols.push_back(Column(rownum, weights, values, to_string(i)));
-//     }
+Dataframe::Dataframe(int rowNum, int colNum, vector<double> weights, vector<int> values) : colnum(colNum), rownum(rowNum)
+{
+    for (int i = 0; i < colnum; i++){
+        Column c = Column(rownum, weights, values, to_string(i));
+        cols.push_back(c);
+    }
     
-// }
+}
 
-
+Dataframe::operator vector<Column>(){
+return cols;
+}
 
 
 Column Dataframe::operator[](string name)
@@ -70,15 +73,16 @@ Column Dataframe::operator[](string name)
             return c;
         }
     }
+    return Column();
 }
 
-Dataframe Dataframe::operator[](vector<bool> mask){
-    vector<int> selected;
+// Dataframe Dataframe::operator[](vector<bool> mask){
+//     vector<int> selected;
 
-    // For indexer i, if bool is true, we add that values from colvec to selected.
-    // for(int i = 0; i < rownum; i++) if (mask[i]) selected.push_back(rows[i]);
-    // return Column(selected);
-}
+//     // For indexer i, if bool is true, we add that values from colvec to selected.
+//     // for(int i = 0; i < rownum; i++) if (mask[i]) selected.push_back(rows[i]);
+//     // return Column(selected);
+// }
 
 
 void Dataframe::operator+=(Column column){
@@ -89,13 +93,5 @@ void Dataframe::operator+=(Column column){
 void Dataframe::insert(int index, Column col){
     cols.insert(cols.begin() + index, col);
 }
-
-
-
-
-
-
-
-
 
 

@@ -1,11 +1,10 @@
 #include <iostream>
 #include <vector>
-#include "column.hpp"
 #include "dataframe.hpp"
 #include <algorithm>
 #include <typeinfo>
 
-
+using namespace std;
 
 int main(){
     std::cout << "Hi Mike\n";
@@ -17,14 +16,20 @@ int main(){
     
     c.print();
 
-    std::cout << c.name();
+    std::cout << c.name() << endl;
 
-    Dataframe df();
+  
+    Dataframe df(15, 5, d, i);
     
-   
+    for (auto a : static_cast<vector<Column>>(df)){
+        a.print();
+    }
+    df = Dataframe(15, 4, d, i);
+    
 
-
-
+    for (auto a : static_cast<vector<Column>>(df)){
+        a.print();
+    }
     // std::sort(i.begin(), i.end(), [&](int a, int b) {return a > b; });
 
     // for (auto &a : i){
