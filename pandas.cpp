@@ -46,8 +46,8 @@ namespace pandas{
         return output;
     }
 
-
-    // std::vector<bool> operator&(vector<bool> a, vector<bool> b){
+// Bad Practice
+// std::vector<bool> operator&(vector<bool> a, vector<bool> b){
 //     if (a.size() != b.size()){
 //         throw std::invalid_argument("differently sized bitwise operands");
 //     }

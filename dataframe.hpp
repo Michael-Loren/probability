@@ -20,6 +20,8 @@ class Dataframe{
 
     Dataframe(int rowNum, int colNum, vector<double> weights, vector<int> values);
 
+    Dataframe(vector<Column> newcols); 
+
     // Create a dataframe from a 2d matrix of integers. 
     Dataframe(vector<vector<int>> DataMatrix);
 

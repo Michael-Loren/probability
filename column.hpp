@@ -55,10 +55,12 @@ class Column{
 
         // Return the name of the column
         string name();
-
+        void rename(string newname);
 
 
         void print();
+
+        int getsize();
     
     private:
         // Column values
@@ -68,7 +70,7 @@ class Column{
         int size;
 
         std::string colname;
-        
+
         //for random number seed because i'm too lazy to use an entropic seed
         static int count;
         

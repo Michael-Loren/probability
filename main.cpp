@@ -21,14 +21,14 @@ int main(){
 
 
 
-    vector<bool> b1 = {0, 1, 0, 1};
-    vector<bool> b2 = {1, 1, 0, 0};
+    // vector<bool> b1 = {0, 1, 0, 1};
+    // vector<bool> b2 = {1, 1, 0, 0};
 
-    vector<bool> newvec = b1 & b2;
+    // vector<bool> newvec = b1 & b2;
 
-    for (auto b : newvec) {
-        cout << b << " ";
-    }
+    // for (auto b : newvec) {
+    //     cout << b << " ";
+    // }
  
  
  
@@ -57,7 +57,7 @@ int main(){
     }
     cout << endl;
     
-    vector<bool> conditionC = vecAND(conditionA, conditionB);
+    vector<bool> conditionC = pandas::vecAND(conditionA, conditionB);
     
     c[conditionA].print();
     c[conditionB].print();

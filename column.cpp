@@ -1,6 +1,4 @@
-
 #include "column.hpp"
-#include <chrono>
 using namespace std;
 int Column::count = random_device{}();
 
@@ -38,8 +36,7 @@ Column::operator std::vector<int>(){
 
 // Boolean Mask Logic.
 
-vector<bool> Column::operator>(int value)
-{
+vector<bool> Column::operator>(int value){
     vector<bool> mask;
     for (int i = 0; i < size; i++) {
         mask.push_back(rows[i] > value);
@@ -47,8 +44,7 @@ vector<bool> Column::operator>(int value)
     return mask;
 }
 
-vector<bool> Column::operator<(int value)
-{
+vector<bool> Column::operator<(int value){
     vector<bool> mask;
     for (int i = 0; i < size; i++) {
         mask.push_back(rows[i] < value);
@@ -56,8 +52,7 @@ vector<bool> Column::operator<(int value)
     return mask;
 }
 
-vector<bool> Column::operator>=(int value)
-{
+vector<bool> Column::operator>=(int value){
     vector<bool> mask;
     for (int i = 0; i < size; i++) {
         mask.push_back(rows[i] >= value);
@@ -65,8 +60,7 @@ vector<bool> Column::operator>=(int value)
     return mask;
 }
 
-vector<bool> Column::operator<=(int value)
-{
+vector<bool> Column::operator<=(int value){
     vector<bool> mask;
     for (int i = 0; i < size; i++) {
         mask.push_back(rows[i] <= value);
@@ -74,8 +68,7 @@ vector<bool> Column::operator<=(int value)
     return mask;
 }
 
-vector<bool> Column::operator==(int value)
-{
+vector<bool> Column::operator==(int value){
     vector<bool> mask;
     for (int i = 0; i < size; i++) {
         mask.push_back(rows[i] == value);
@@ -83,8 +76,7 @@ vector<bool> Column::operator==(int value)
     return mask;
 }
 
-vector<bool> Column::operator!=(int value)
-{
+vector<bool> Column::operator!=(int value){
     vector<bool> mask;
     for (int i = 0; i < size; i++) {
         mask.push_back(rows[i] != value);
@@ -92,8 +84,7 @@ vector<bool> Column::operator!=(int value)
     return mask;
 }
 
-void Column::print()
-{
+void Column::print(){
     for (auto &i : rows)
     {
         cout << i << " "; 
@@ -106,8 +97,7 @@ void Column::print()
  *
  * @param rows Rows that are selected
  */
-Column Column::operator[](vector<int> rows)
-{
+Column Column::operator[](vector<int> rows){
     vector<int> selected;
     for(auto &i: rows) selected.push_back(rows[i]);
     return Column(selected);
@@ -136,3 +126,7 @@ Column Column::operator[](vector<bool> mask)
 string Column::name(){
     return colname;
 }
+int Column::getsize(){
+    return size;
+}
+void Column::rename(string newname){colname = newname;};

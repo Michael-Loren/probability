@@ -58,8 +58,21 @@ Dataframe::Dataframe(int rowNum, int colNum, vector<double> weights, vector<int>
     
 }
 
+
+//potentially dangerous because columns could maybe be of different sizes?
+Dataframe::Dataframe(vector<Column> newcols) : colnum(newcols.size()), rownum(newcols.at(0).getsize()), cols(newcols) {
+    int currentsize = newcols.at(0).getsize();
+    for (Column &c : newcols){
+        if (c.getsize() != currentsize){
+            throw std::logic_error("Columns are not the same size");
+            exit(1);
+        }
+    }
+};
+
+
 Dataframe::operator vector<Column>(){
-return cols;
+    return cols;
 }
 
 
@@ -76,13 +89,21 @@ Column Dataframe::operator[](string name)
     return Column();
 }
 
-// Dataframe Dataframe::operator[](vector<bool> mask){
-//     vector<int> selected;
+// Mask represents each row of dataframe
+Dataframe Dataframe::operator[](vector<bool> mask){
+    vector<Column> selected;
 
-//     // For indexer i, if bool is true, we add that values from colvec to selected.
-//     // for(int i = 0; i < rownum; i++) if (mask[i]) selected.push_back(rows[i]);
-//     // return Column(selected);
-// }
+    for(Column &c: cols){
+        // Rows for which the mask evaluates true for any given column.
+        selected.push_back(c[mask]);
+    }
+
+    return selected;
+    
+    // For indexer i, if bool is true, we add that values from colvec to selected.
+    // for(int i = 0; i < rownum; i++) if (mask[i]) selected.push_back(rows[i]);
+    // return Column(selected);
+}
 
 
 void Dataframe::operator+=(Column column){
