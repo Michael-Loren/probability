@@ -9,6 +9,7 @@
 
 using namespace std;
 
+namespace pandas{
 class Dataframe{
 
     //----------------------CONSTRUCTORS-----------------------------
@@ -66,5 +67,5 @@ class Dataframe{
         //number of rows in each col
         int rownum;
     }; 
-
+}
 #endif

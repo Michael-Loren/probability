@@ -1,5 +1,7 @@
 #include "column.hpp"
 using namespace std;
+using namespace pandas;
+
 int Column::count = random_device{}();
 
 /**

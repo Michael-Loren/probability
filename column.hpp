@@ -12,6 +12,7 @@
 
 using std::vector;
 using std::string;
+namespace pandas{
 class Column{
     public:
         Column();
@@ -78,5 +79,5 @@ class Column{
         static int count;
         
 };
-
+}
 #endif

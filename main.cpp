@@ -83,11 +83,11 @@ int main(){
 //     double pAintB = (double)df[vecAND(conditionA, conditionB)].getsize()/ (bool) df.getsize();
 //     double pBgivenA = pAintB/pA;
 //     return pBgivenA;
-// };
+// }
 // double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
 //     double pA = (double)df[conditionA].getsize() / (double)df.getsize();
 //     double pB = (double)df[conditionB].getsize() / (double)df.getsize();
 //     pAgivenB = pBgivenA * pA/pB;
 //     return pAgivenB;
-// };
+// }
 

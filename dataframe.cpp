@@ -1,6 +1,6 @@
 #include "dataframe.hpp"
 
-
+using namespace pandas;
 
 Dataframe::Dataframe(){
 

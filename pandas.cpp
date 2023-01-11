@@ -1,50 +1,58 @@
 
 #include "pandas.hpp"
-
 using namespace std;
 namespace pandas{
-    static std::vector<bool> vecAND(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecAND(vector<bool> &a, vector<bool> &b){
         vector<bool> output;
+        output.resize(a.size());
+        output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x & y; });
         return output;
     }
-    static std::vector<bool> vecOR(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecOR(vector<bool> &a, vector<bool> &b){
         vector<bool> output;
+        output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return x & y; });
+                       { return x | y; });
         return output;
     }
-    static std::vector<bool> vecNAND(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecNAND(vector<bool> &a, vector<bool> &b){
         vector<bool> output;
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return !(x & y); });
-        return output;
-    }
-    static std::vector<bool> vecNOR(vector<bool> &a, vector<bool> &b){
-        vector<bool> output;
+        output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return !(x & y); });
         return output;
     }
-    static std::vector<bool> vecXOR(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecNOR(vector<bool> &a, vector<bool> &b){
         vector<bool> output;
+        output.resize(a.size());
+        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
+                       { return !(x & y); });
+        return output;
+    }
+     std::vector<bool> vecXOR(vector<bool> &a, vector<bool> &b){
+        vector<bool> output;
+        output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x ^ y; });
         return output;
     }
-    static std::vector<bool> vecEQ(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecEQ(vector<bool> &a, vector<bool> &b){
         vector<bool> output;
+        output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x == y; });
         return output;
     }
-    static std::vector<bool> vecNEQ(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecNEQ(vector<bool> &a, vector<bool> &b){
         vector<bool> output;
+        output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x != y; });
         return output;
     }
+
 
 // Bad Practice
 // std::vector<bool> operator&(vector<bool> a, vector<bool> b){
