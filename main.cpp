@@ -9,24 +9,26 @@ using namespace std;
 using namespace pandas;
 
 
-// double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
-//     double pB = (double)df[conditionB].getrows() / (double)df.getrows();
-//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
-//     double pAgivenB = pAintB/pB;
-//     return pAgivenB;
-// }
-// double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
-//     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
-//     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
-//     double pBgivenA = pAintB/pA;
-//     return pBgivenA;
-// }
-// double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
-//     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
-//     double pB = (double)df[conditionB].getrows() / (double)df.getrows();
-//     double pAgivenB = pBgivenA * pA/pB;
-//     return pAgivenB;
-// }
+double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+    double pB = (double)df[conditionB].getrows() / (double)df.getrows();
+    double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
+    double pAgivenB = pAintB/pB;
+    return pAgivenB;
+}
+double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+    double pA = (double)df[conditionA].getrows() / (double)df.getrows();
+    double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
+    double pBgivenA = pAintB/pA;
+    return pBgivenA;
+}
+double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
+    double pA = (double)df[conditionA].getrows() / (double)df.getrows();
+    double pB = (double)df[conditionB].getrows() / (double)df.getrows();
+    double pAgivenB = pBgivenA * pA/pB;
+    return pAgivenB;
+}
+
+
 int main(){
     std::cout << "Hi Mike\n";
 
@@ -38,6 +40,18 @@ int main(){
     c.print();
 
     std::cout << c.name() << endl;
+
+    vector<vector<double>> weights{{0.2, 0.4, 0.2, 0.2},{0.3, 0.2, 0.5},{0.6, 0.4}};
+    vector<vector<int>> values{{2, 4, 6, 8},{3, 13, 16},{100, 5}};
+
+
+    // Specific Dataframe Constructor
+    Dataframe specified(20, weights, values);
+
+    specified.print();
+
+    cout << "++++++++++++++++++++++++++++++++++++++++++\n";
+
 
 
 
@@ -53,13 +67,13 @@ int main(){
  
  
  
- 
+    // Random Dataframe constructor
     Dataframe df(100, 6, d, i);
     df.print();
 
    
 
-    cout << "+++++++++++++++++++++++\n";
+    cout << "++++++++++++++++++++++++++++++++++++++++++\n";
 
 
     vector<bool> conditionA = df["2"] == 5;

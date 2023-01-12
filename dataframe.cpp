@@ -19,13 +19,19 @@ Dataframe::Dataframe(){
 // ''
 
 
-Dataframe::Dataframe(int rowNum, int colNum, vector<vector<double>> weights, vector<vector<int>> values, vector<string> names = {}) : colnum(colNum), rownum(rowNum)
+Dataframe::Dataframe(int rowNum, vector<vector<double>> weights, vector<vector<int>> values, vector<string> names) : colnum(weights.size()), rownum(rowNum)
 {
     // iterators for the weights, values, and names vectors
     vector<vector<double>>::iterator w;
     vector<vector<int>>::iterator v;
     vector<string>::iterator n;
     int i = 0;
+
+    // The weights and values vectors must be of the same size.
+    if (weights.size() != values.size()){
+        throw std::logic_error("Values and Weights are not the same size");
+        exit(1);
+    }
     
     for(w = weights.begin(), v=values.begin(), i = 0; w != weights.end(), v != values.end(); w++, v++, i++)
     {
@@ -33,13 +39,19 @@ Dataframe::Dataframe(int rowNum, int colNum, vector<vector<double>> weights, vec
         std::vector<double> currentWeights = *w;
         std::vector<int> currentValues = *v;
         std::string currentName = *n;
-        
+
+        // Check that the rows are not mishapen.
+        if (currentWeights.size() != currentValues.size()){
+            throw std::logic_error("Mishapen: Each value needs a specified weight and vice-versa.");
+            exit(1);
+        }
+
         // Create a default integer name for each column if names isn't supplied.
-        if(!names.size()){
+        if(names.empty()){
             // Add a new column using the column constructor with default names
             cols.push_back(Column(rowNum, currentWeights, currentValues, to_string(i)));
         }
-        else if(names.size()){
+        else if(!names.empty()){
             // Add a new column using the column constructor with specified names
             cols.push_back(Column(rowNum, currentWeights, currentValues, currentName));
             n++;
@@ -58,7 +70,7 @@ Dataframe::Dataframe(int rowNum, int colNum, vector<double> weights, vector<int>
     
 }
 
-
+// Create a Dataframe from a vector of columns.
 //potentially dangerous because columns could maybe be of different sizes?
 Dataframe::Dataframe(vector<Column> newcols) : colnum(newcols.size()), rownum(newcols.at(0).getsize()), cols(newcols) {
     int currentsize = newcols.at(0).getsize();
@@ -91,7 +103,7 @@ Column Dataframe::operator[](string name)
     return Column();
 }
 
-// Mask represents each column of dataframe
+// Apply a mask to index the rows that correspond to the boolean mask.
 Dataframe Dataframe::operator[](vector<bool> mask){
     vector<Column> selected;
 

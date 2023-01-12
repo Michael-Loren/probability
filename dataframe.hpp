@@ -19,7 +19,7 @@ class Dataframe{
     // Create a dataframe with a certain number of rows and columns - random
     Dataframe(int rowNum, int colNum);
 
-    Dataframe(int rowNum, int colNum, vector<vector<double>> weights, vector<vector<int>> values, vector<string> names);
+    Dataframe(int rowNum, vector<vector<double>> weights, vector<vector<int>> values, vector<string> names = {});
 
     Dataframe(int rowNum, int colNum, vector<double> weights, vector<int> values);
 
