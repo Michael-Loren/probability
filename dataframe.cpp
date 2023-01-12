@@ -24,7 +24,7 @@ Dataframe::Dataframe(int rowNum, vector<vector<double>> weights, vector<vector<i
     // iterators for the weights, values, and names vectors
     vector<vector<double>>::iterator w;
     vector<vector<int>>::iterator v;
-    vector<string>::iterator n;
+    
     int i = 0;
 
     // The weights and values vectors must be of the same size.
@@ -38,7 +38,6 @@ Dataframe::Dataframe(int rowNum, vector<vector<double>> weights, vector<vector<i
         // Index over each vector double of weights, each vector integer of values, and each string of names
         std::vector<double> currentWeights = *w;
         std::vector<int> currentValues = *v;
-        std::string currentName = *n;
 
         // Check that the rows are not mishapen.
         if (currentWeights.size() != currentValues.size()){
@@ -51,7 +50,10 @@ Dataframe::Dataframe(int rowNum, vector<vector<double>> weights, vector<vector<i
             // Add a new column using the column constructor with default names
             cols.push_back(Column(rowNum, currentWeights, currentValues, to_string(i)));
         }
+        // If name is supplied, we iterate through it.
         else if(!names.empty()){
+            vector<string>::iterator n;
+            std::string currentName = *n;
             // Add a new column using the column constructor with specified names
             cols.push_back(Column(rowNum, currentWeights, currentValues, currentName));
             n++;
