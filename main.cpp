@@ -54,8 +54,7 @@ int main(){
  
  
  
-    Dataframe df(10, 4, d, i);
-    df.insert(2, c);
+    Dataframe df(100, 6, d, i);
     df.print();
 
    

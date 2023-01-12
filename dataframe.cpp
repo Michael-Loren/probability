@@ -64,6 +64,7 @@ Dataframe::Dataframe(vector<Column> newcols) : colnum(newcols.size()), rownum(ne
     int currentsize = newcols.at(0).getsize();
     for (Column &c : newcols){
         if (c.getsize() != currentsize){
+           // cout << c.getsize() << " : " << currentsize << endl;
             throw std::logic_error("Columns are not the same size");
             exit(1);
         }
@@ -108,6 +109,10 @@ Dataframe Dataframe::operator[](vector<bool> mask){
 
 
 void Dataframe::operator+=(Column column){
+    if (column.getsize() != rownum){
+        throw std::length_error("Added column with differing size to dataframe!");
+        exit(1);
+    }
     cols.push_back(column);
     colnum++;
 }
@@ -115,6 +120,10 @@ void Dataframe::operator+=(Column column){
 
 
 void Dataframe::insert(int index, Column col){
+    if (col.getsize() != rownum){
+        throw std::length_error("Added column with differing size to dataframe!");
+        exit(1);
+    }
     cols.insert(cols.begin() + index, col);
     colnum++;
 }
