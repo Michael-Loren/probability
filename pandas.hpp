@@ -13,5 +13,9 @@ namespace pandas{
      std::vector<bool> vecXOR(vector<bool> &a, vector<bool> &b);
      std::vector<bool> vecEQ(vector<bool> &a, vector<bool> &b);
      std::vector<bool> vecNEQ(vector<bool> &a, vector<bool> &b);
+
+     double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB);
+     double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB);
+     double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA);
  }
 #endif
