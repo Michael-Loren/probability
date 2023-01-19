@@ -17,5 +17,6 @@ namespace pandas{
      double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB);
      double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB);
      double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA);
+     
  }
 #endif

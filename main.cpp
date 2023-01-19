@@ -90,8 +90,13 @@ int main(){
     double prob = (double)df[conditionC].getrows() / (double)df.getrows();
     cout << prob << endl;
 
-    // double probability = probAgivenB(df, conditionA, conditionB);
-    // cout << probability << endl;
+    double pBgA = probAgivenB(df, conditionA, conditionB);
+    cout << pBgA << endl;
+
+    double pAgB = bayesTheorem(df, conditionA, conditionB, pBgA);
+    cout << pAgB << endl;
+
+
    
 }
 
