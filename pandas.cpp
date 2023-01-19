@@ -2,7 +2,7 @@
 #include "pandas.hpp"
 using namespace std;
 namespace pandas{
-     std::vector<bool> vecAND(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecAND(const vector<bool> &a, const vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         output.resize(a.size());
@@ -10,42 +10,45 @@ namespace pandas{
                        { return x & y; });
         return output;
     }
-     std::vector<bool> vecOR(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecOR(const vector<bool> &a, const vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x | y; });
         return output;
     }
-     std::vector<bool> vecNAND(vector<bool> &a, vector<bool> &b){
+
+
+
+     std::vector<bool> vecNAND(const vector<bool> &a, const vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return !(x & y); });
         return output;
     }
-     std::vector<bool> vecNOR(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecNOR(const vector<bool> &a, vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return !(x & y); });
         return output;
     }
-     std::vector<bool> vecXOR(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecXOR(const vector<bool> &a, const vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x ^ y; });
         return output;
     }
-     std::vector<bool> vecEQ(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecEQ(const vector<bool> &a, const vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
                        { return x == y; });
         return output;
     }
-     std::vector<bool> vecNEQ(vector<bool> &a, vector<bool> &b){
+     std::vector<bool> vecNEQ(const vector<bool> &a, const vector<bool> &b){
         vector<bool> output;
         output.resize(a.size());
         std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
@@ -53,24 +56,31 @@ namespace pandas{
         return output;
     }
 
-    double probAgivenB(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
+
+
+
+    double probAgivenB(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB) {
         double pB = (double)df[conditionB].getrows() / (double)df.getrows();
         double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
         double pAgivenB = pAintB/pB;
         return pAgivenB;
     }
-    double probBgivenA(Dataframe df, vector<bool> conditionA, vector<bool> conditionB) {
-        double pA = (double)df[conditionA].getrows() / (double)df.getrows();
-        double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
-        double pBgivenA = pAintB/pA;
-        return pBgivenA;
-    }
-    double bayesTheorem(Dataframe df, vector<bool> conditionA, vector<bool> conditionB, double pBgivenA) {
+    
+    // double probBgivenA(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB) {
+    //     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
+    //     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
+    //     double pBgivenA = pAintB/pA;
+    //     return pBgivenA;
+    // }
+
+    double bayesTheorem(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB, double pBgivenA) {
         double pA = (double)df[conditionA].getrows() / (double)df.getrows();
         double pB = (double)df[conditionB].getrows() / (double)df.getrows();
         double pAgivenB = pBgivenA * pA/pB;
         return pAgivenB;
     }
+
+// (A and B and C and D) / (A and C)
 
 
 // Bad Practice
