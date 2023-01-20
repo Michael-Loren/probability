@@ -38,53 +38,105 @@ Column::operator std::vector<int>(){
 
 // Boolean Mask Logic.
 
-vector<bool> Column::operator>(int value){
-    vector<bool> mask;
+// vector<bool> Column::operator>(int value){
+//     vector<bool> mask;
+//     for (int i = 0; i < size; i++) {
+//         mask.push_back(rows[i] > value);
+//     }
+//     return mask;
+// }
+
+unsigned int Column::operator>(int value){
+    unsigned int mask = 0;
     for (int i = 0; i < size; i++) {
-        mask.push_back(rows[i] > value);
+        mask |= (rows[i] > value) << i;
     }
     return mask;
 }
 
-vector<bool> Column::operator<(int value){
-    vector<bool> mask;
+// vector<bool> Column::operator<(int value){
+//     vector<bool> mask;
+//     for (int i = 0; i < size; i++) {
+//         mask.push_back(rows[i] < value);
+//     }
+//     return mask;
+// }
+
+unsigned int Column::operator<(int value){
+    unsigned int mask = 0;
     for (int i = 0; i < size; i++) {
-        mask.push_back(rows[i] < value);
+        mask |= (rows[i] < value) << i;
     }
     return mask;
 }
 
-vector<bool> Column::operator>=(int value){
-    vector<bool> mask;
+// vector<bool> Column::operator>=(int value){
+//     vector<bool> mask;
+//     for (int i = 0; i < size; i++) {
+//         mask.push_back(rows[i] >= value);
+//     }
+//     return mask;
+// }
+
+unsigned int Column::operator>=(int value){
+    unsigned int mask = 0;
     for (int i = 0; i < size; i++) {
-        mask.push_back(rows[i] >= value);
+        mask |= (rows[i] >= value) << i;
     }
     return mask;
 }
 
-vector<bool> Column::operator<=(int value){
-    vector<bool> mask;
+// vector<bool> Column::operator<=(int value){
+//     vector<bool> mask;
+//     for (int i = 0; i < size; i++) {
+//         mask.push_back(rows[i] <= value);
+//     }
+//     return mask;
+// }
+
+unsigned int Column::operator<=(int value){
+    unsigned int mask = 0;
     for (int i = 0; i < size; i++) {
-        mask.push_back(rows[i] <= value);
+        mask |= (rows[i] <= value) << i;
     }
     return mask;
 }
 
-vector<bool> Column::operator==(int value){
-    vector<bool> mask;
+// vector<bool> Column::operator==(int value){
+//     vector<bool> mask;
+//     for (int i = 0; i < size; i++) {
+//         mask.push_back(rows[i] == value);
+//     }
+//     return mask;
+// }
+
+unsigned int Column::operator==(int value){
+    unsigned int mask = 0;
     for (int i = 0; i < size; i++) {
-        mask.push_back(rows[i] == value);
+        mask |= (rows[i] == value) << i;
     }
     return mask;
 }
 
-vector<bool> Column::operator!=(int value){
-    vector<bool> mask;
+// vector<bool> Column::operator!=(int value){
+//     vector<bool> mask;
+//     for (int i = 0; i < size; i++) {
+//         mask.push_back(rows[i] != value);
+//     }
+//     return mask;
+// }
+
+unsigned int Column::operator!=(int value){
+    unsigned int mask = 0;
     for (int i = 0; i < size; i++) {
-        mask.push_back(rows[i] != value);
+        mask |= (rows[i] != value) << i;
     }
     return mask;
 }
+
+
+
+
 
 void Column::print(){
     for (auto &i : rows)
@@ -99,30 +151,38 @@ void Column::print(){
  *
  * @param rows Rows that are selected
  */
-Column Column::operator[](vector<int> rows){
+Column Column::operator[](unsigned int mask){
     vector<int> selected;
-    for(auto &i: rows) selected.push_back(rows[i]);
+    for (int i = 0; i < size; i++) {
+        if (mask & (1 << i)) {
+            selected.push_back(this->rows[i]);
+        }
+    }
     return Column(selected);
-
 }
 
-
-
-//df[numbirds>1]
-
-//numbirds>1 -> {true, false, true, ...}
-//df[numbirds>1] -> the desired rows.
-
-// filter(df, [](auto arg) {return arg < 5;})
-
-Column Column::operator[](vector<bool> mask)
+// Option to select rows from a column.
+Column Column::operator[](vector<int> rowMask)
 {
     vector<int> selected;
-
-    // For indexer i, if bool is true, we add that values from colvec to selected.
-    for(int i = 0; i < size; i++) if (mask[i]) selected.push_back(rows[i]);
+    for(auto &i: rowMask)
+        if(i<size) // check if index is within the size of the rows array
+            selected.push_back(this->rows[i]);
+        else{
+            throw std::logic_error("Attempted to access rows that don't exist.");
+            exit(1);
+        }
     return Column(selected);
 }
+
+// Column Column::operator[](vector<bool> mask)
+// {
+//     vector<int> selected;
+
+//     // For indexer i, if bool is true, we add that values from colvec to selected.
+//     for(int i = 0; i < size; i++) if (mask[i]) selected.push_back(rows[i]);
+//     return Column(selected);
+// }
 
 
 string Column::name(){

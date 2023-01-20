@@ -56,7 +56,7 @@ int main(){
     cout << "++++++++++++++++++++++++++++++++++++++++++\n";
 
 
-    vector<bool> conditionA = vecOR( df["3"] == 5, vecAND(df["1"] == 5, df["3"] == 5) );
+    vector<bool> conditionA = vecAND(df["3"] == 5, vecAND(df["1"] == 5, df["3"] == 5) );
 
 
     vector<bool> conditionB = df["3"] == 10;
@@ -90,7 +90,7 @@ int main(){
     double prob = (double)df[conditionC].getrows() / (double)df.getrows();
     cout << prob << endl;
 
-    double pBgA = probAgivenB(df, conditionB, conditionA);
+    double pBgA = probAgivenB(df, conditionA, conditionB);
     cout << pBgA << endl;
 
     double pAgB = bayesTheorem(df, conditionA, conditionB, pBgA);
