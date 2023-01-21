@@ -2,78 +2,59 @@
 #include "pandas.hpp"
 using namespace std;
 namespace pandas{
-     std::vector<bool> vecAND(const vector<bool> &a, const vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return x & y; });
-        return output;
+
+    // Takes the bitwise unsigned integers a and b and performs a bitwise AND operation
+    std::unsigned int vecAND(const unsigned int &a, const unsigned int &b){
+        return a & b;
     }
-     std::vector<bool> vecOR(const vector<bool> &a, const vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return x | y; });
-        return output;
+    // Takes the bitwise unsigned integers a and b and performs a bitwise OR operation
+    std::unsigned int vecOR(const unsigned int &a, const unsigned int &b){
+        return a | b;
     }
 
+    //Takes the bitwise unsigned integers a and b and performs a bitwise NAND operation
+    std::unsigned int vecNAND(const unsigned int &a, const unsigned int &b){
+        return ~(a & b);
+    }
 
+    //Takes the bitwise unsigned integers a and b and performs a bitwise NOR operation
+    std::unsigned int vecNOR(const unsigned int &a, unsigned int &b){
+        return ~(a | b);
+    }
 
-     std::vector<bool> vecNAND(const vector<bool> &a, const vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return !(x & y); });
-        return output;
+    //Takes the bitwise unsigned integers a and b and performs a bitwise XOR operation
+    std::unsigned int vecXOR(const unsigned int &a, const unsigned int &b){
+        return a ^ b;
     }
-     std::vector<bool> vecNOR(const vector<bool> &a, vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return !(x & y); });
-        return output;
+
+    //Takes the bitwise unsigned integers a and b and performs a bitwise == operation
+     std::unsigned int vecEQ(const unsigned int &a, const unsigned int &b){
+        return ~(a ^ b);
     }
-     std::vector<bool> vecXOR(const vector<bool> &a, const vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return x ^ y; });
-        return output;
-    }
-     std::vector<bool> vecEQ(const vector<bool> &a, const vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return x == y; });
-        return output;
-    }
-     std::vector<bool> vecNEQ(const vector<bool> &a, const vector<bool> &b){
-        vector<bool> output;
-        output.resize(a.size());
-        std::transform(a.begin(), a.end(), b.begin(), output.begin(), [](bool x, bool y)
-                       { return x != y; });
-        return output;
+
+    //Takes the bitwise unsigned integers a and b and performs a bitwise != operation
+     std::unsigned int vecNEQ(const unsigned int &a, const unsigned int &b){
+        return a ^ b;
     }
 
 
 
 
-    double probAgivenB(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB) {
+    double probAgivenB(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB) {
         double pB = (double)df[conditionB].getrows() / (double)df.getrows();
         double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
         double pAgivenB = pAintB/pB;
         return pAgivenB;
     }
     
-    // double probBgivenA(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB) {
+    // double probBgivenA(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB) {
     //     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
     //     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
     //     double pBgivenA = pAintB/pA;
     //     return pBgivenA;
     // }
 
-    double bayesTheorem(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB, double pBgivenA) {
+    double bayesTheorem(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB, double pBgivenA) {
         double pA = (double)df[conditionA].getrows() / (double)df.getrows();
         double pB = (double)df[conditionB].getrows() / (double)df.getrows();
         double pAgivenB = pBgivenA * pA/pB;
