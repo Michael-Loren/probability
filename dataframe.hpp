@@ -5,6 +5,7 @@
 #include <string>
 #include <map>
 #include "column.hpp"
+#include "pandas.hpp"
 
 
 using namespace std;

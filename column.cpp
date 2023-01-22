@@ -46,8 +46,9 @@ Column::operator std::vector<int>(){
 //     return mask;
 // }
 
-unsigned int Column::operator>(int value){
-    unsigned int mask = 0;
+auto Column::operator>(int value){
+    const int something = 4;
+    std::bitset<something> mask = 0;
     for (int i = 0; i < size; i++) {
         mask |= (rows[i] > value) << i;
     }
@@ -188,7 +189,7 @@ Column Column::operator[](vector<int> rowMask)
 string Column::name(){
     return colname;
 }
-int Column::getsize(){
+const int Column::getsize(){
     return size;
 }
 void Column::rename(string newname){colname = newname;};

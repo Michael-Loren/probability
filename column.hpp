@@ -8,13 +8,17 @@
 #include <map>
 #include <random>
 #include <algorithm>
-
+#include <bitset>
+#include "pandas.hpp"
 
 using std::vector;
 using std::string;
 namespace pandas{
 class Column{
     public:
+
+        using mask_t = std::bitset<30>;
+
         Column();
         
 
@@ -43,16 +47,16 @@ class Column{
         operator vector<int>();
 
         // Bool Masking and Operator Functions
-        vector<bool> operator>(int value);
-        vector<bool> operator<(int value);
-        vector<bool> operator>=(int value);
-        vector<bool> operator<=(int value);
-        vector<bool> operator==(int value);
-        vector<bool> operator!=(int value);
+        auto operator>(int value);
+        unsigned int operator<(int value);
+        unsigned int operator>=(int value);
+        unsigned int operator<=(int value);
+        unsigned int operator==(int value);
+        unsigned int operator!=(int value);
 
 
         // Return Elements that meet an operator condition.
-        Column operator[](vector<bool> mask);
+        Column operator[](unsigned int mask);
 
         // Return rows {1, 2, 3, 4}
         Column operator[](vector<int> rows);
@@ -64,7 +68,7 @@ class Column{
 
         void print();
 
-        int getsize();
+        const int getsize();
     
     private:
         // Column values

@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 
 #include "pandas.hpp"
 #include <algorithm>
@@ -56,14 +57,14 @@ int main(){
     cout << "++++++++++++++++++++++++++++++++++++++++++\n";
 
 
-    unsigned int conditionA = vecAND(df["3"] == 5, vecAND(df["1"] == 5, df["3"] == 5) );
+    unsigned int conditionA = df["3"] == 5 | df["1"] == 5 & df["3"] == 5;
 
 
     unsigned int conditionB = df["3"] == 10;
 
 
     cout << "-----------df[conditionA]---------------------\n";
-    for (auto i : conditionA){
+    for (auto i : itoa(conditionA, 10)){
         cout << i << " ";
     }
     cout << endl;

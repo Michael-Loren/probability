@@ -64,7 +64,8 @@
         "list": "cpp",
         "xhash": "cpp",
         "chrono": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "bitset": "cpp"
     },
     "C_Cpp.errorSquiggles": "enabled"
 }
