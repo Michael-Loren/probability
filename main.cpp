@@ -56,10 +56,10 @@ int main(){
     cout << "++++++++++++++++++++++++++++++++++++++++++\n";
 
 
-    vector<bool> conditionA = vecAND(df["3"] == 5, vecAND(df["1"] == 5, df["3"] == 5) );
+    unsigned int conditionA = vecAND(df["3"] == 5, vecAND(df["1"] == 5, df["3"] == 5) );
 
 
-    vector<bool> conditionB = df["3"] == 10;
+    unsigned int conditionB = df["3"] == 10;
 
 
     cout << "-----------df[conditionA]---------------------\n";

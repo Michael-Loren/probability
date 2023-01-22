@@ -50,13 +50,17 @@ class Dataframe{
     Column operator[](string name);
 
     // Return the dataframe of rows for which the mask is true.
-    Dataframe operator[](vector<bool> mask);
+    Dataframe operator[](unsigned int mask);
 
     void rowadd(vector<int> row);
     void remove(int index);
 
     int getrows();
     int getcols();
+
+    double probAgivenB(const vector<bool> &conditionA, const vector<bool> &conditionB);
+    //  double probBgivenA(Dataframe df, const vector<bool> &conditionA, const vector<bool> &conditionB);
+    double bayesTheorem(const vector<bool> &conditionA, const vector<bool> &conditionB, double pBgivenA);
 
 
 

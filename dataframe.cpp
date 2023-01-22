@@ -106,7 +106,7 @@ Column Dataframe::operator[](string name)
 }
 
 // Apply a mask to index the rows that correspond to the boolean mask.
-Dataframe Dataframe::operator[](vector<bool> mask){
+Dataframe Dataframe::operator[](unsigned int mask){
     vector<Column> selected;
 
     for(Column &c: cols){
