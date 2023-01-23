@@ -69,6 +69,9 @@ class Column{
         void print();
 
         const int getsize();
+
+        // Count number of rows with each unique value of variable
+        Column value_counts();
     
     private:
         // Column values

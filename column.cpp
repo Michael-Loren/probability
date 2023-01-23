@@ -183,10 +183,22 @@ Column Column::operator[](vector<int> rowMask)
 // }
 
 
-string Column::name(){
-    return colname;
-}
-const int Column::getsize(){
-    return size;
-}
+string Column::name(){return colname;}
+
+const int Column::getsize(){return size;}
+
 void Column::rename(string newname){colname = newname;};
+
+
+// Count number of rows with each unique value of variable
+Column Column::value_counts(){
+    unordered_map<int, int> value_counts;
+    for (int value : rows) {
+        value_counts[value]++;
+    }
+    vector<int> counts;
+    for (auto [value, count] : value_counts) {
+        counts.push_back(count);
+    }
+    return Column(counts);
+}
