@@ -17,8 +17,6 @@ namespace pandas{
 class Column{
     public:
 
-        using mask_t = std::bitset<30>;
-
         Column();
         
 

@@ -4,21 +4,21 @@ using namespace std;
 namespace pandas{
 
 
-    double probAgivenB(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB) {
+    double probAgivenB(Dataframe df, boolean_mask &conditionA, boolean_mask &conditionB) {
         double pB = (double)df[conditionB].getrows() / (double)df.getrows();
-        double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
+        double pAintB = (double)df[conditionA & conditionB].getrows()/ (bool) df.getrows();
         double pAgivenB = pAintB/pB;
         return pAgivenB;
     }
     
-    // double probBgivenA(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB) {
+    // double probBgivenA(Dataframe df, boolean_mask &conditionA, boolean_mask &conditionB) {
     //     double pA = (double)df[conditionA].getrows() / (double)df.getrows();
     //     double pAintB = (double)df[vecAND(conditionA, conditionB)].getrows()/ (bool) df.getrows();
     //     double pBgivenA = pAintB/pA;
     //     return pBgivenA;
     // }
 
-    double bayesTheorem(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB, double pBgivenA) {
+    double bayesTheorem(Dataframe df, boolean_mask &conditionA, boolean_mask &conditionB, double pBgivenA) {
         double pA = (double)df[conditionA].getrows() / (double)df.getrows();
         double pB = (double)df[conditionB].getrows() / (double)df.getrows();
         double pAgivenB = pBgivenA * pA/pB;

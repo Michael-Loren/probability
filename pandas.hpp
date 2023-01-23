@@ -4,11 +4,13 @@
 #include <algorithm>
 #include "dataframe.hpp"
 #include "column.hpp"
-#include <bitset>
+#include <boost/dynamic_bitset.hpp>
+
+using boolean_mask = boost::dynamic_bitset<>;
 
 namespace pandas{
-    double probAgivenB(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB);
-    //  double probBgivenA(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB);
-    double bayesTheorem(Dataframe df, const unsigned int &conditionA, const unsigned int &conditionB, double pBgivenA);
+    double probAgivenB(Dataframe df, boolean_mask &conditionA, boolean_mask &conditionB);
+    //  double probBgivenA(Dataframe df, boolean_mask &conditionA, boolean_mask &conditionB);
+    double bayesTheorem(Dataframe df, boolean_mask &conditionA, boolean_mask &conditionB, double pBgivenA);
  }
 #endif

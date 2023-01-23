@@ -5,9 +5,12 @@
 #include "pandas.hpp"
 #include <algorithm>
 #include <typeinfo>
+#include <boost/dynamic_bitset.hpp>
 
 using namespace std;
 using namespace pandas;
+
+using boolean_mask = boost::dynamic_bitset<>;
 
 
 int main(){
@@ -57,25 +60,25 @@ int main(){
     cout << "++++++++++++++++++++++++++++++++++++++++++\n";
 
 
-    unsigned int conditionA = df["3"] == 5 | df["1"] == 5 & df["3"] == 5;
+    boolean_mask conditionA = df["3"] == 5 | df["1"] == 5 & df["3"] == 5;
 
 
-    unsigned int conditionB = df["3"] == 10;
+    boolean_mask conditionB = df["3"] == 10;
 
 
     cout << "-----------df[conditionA]---------------------\n";
-    for (auto i : itoa(conditionA, 10)){
-        cout << i << " ";
-    }
+    // for (auto i : itoa(conditionA, 10)){
+    //     cout << i << " ";
+    // }
     cout << endl;
     cout << "------------df[conditionB]--------------------\n";
 
-    for (auto i : conditionB){
-        cout << i << " ";
-    }
-    cout << endl;
+    // for (auto i : conditionB){
+    //     cout << i << " ";
+    // }
+    // cout << endl;
     
-    vector<bool> conditionC = pandas::vecAND(conditionA, conditionB);
+    boolean_mask conditionC = conditionA & conditionB;
     
 
     // df[conditionA].print();
@@ -83,10 +86,10 @@ int main(){
     // df[conditionB .print();
     cout << "------------df[conditionC]--------------------\n";
 
-    for (auto i : conditionC){
-        cout << i << " ";
-    }
-    cout << endl;
+    // for (auto i : conditionC){
+    //     cout << i << " ";
+    // }
+    // cout << endl;
 
     double prob = (double)df[conditionC].getrows() / (double)df.getrows();
     cout << prob << endl;

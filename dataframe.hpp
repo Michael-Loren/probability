@@ -37,6 +37,8 @@ class Dataframe{
     //------------------------OPERATIONS-----------------------------
     // Append a single column to the colarray
     void operator+=(Column column);
+    void operator/(int divisor);
+    void operator*(int product);
 
     //insert column to specific index in dataframe
     void insert(int index, Column column);
