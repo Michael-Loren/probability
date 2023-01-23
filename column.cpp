@@ -190,15 +190,15 @@ const int Column::getsize(){return size;}
 void Column::rename(string newname){colname = newname;};
 
 
-// Count number of rows with each unique value of variable
-Column Column::value_counts(){
+// Count the number of rows with each unique values. Return an unordred_map that encodes these values
+unordered_map<int, int> Column::value_counts(){
     unordered_map<int, int> value_counts;
     for (int value : rows) {
         value_counts[value]++;
     }
-    vector<int> counts;
-    for (auto [value, count] : value_counts) {
-        counts.push_back(count);
-    }
-    return Column(counts);
+    // vector<int> counts;
+    // for (auto [value, count] : value_counts) {
+    //     counts.push_back(count);
+    // }
+    return value_counts;
 }
