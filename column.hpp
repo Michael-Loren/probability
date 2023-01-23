@@ -71,7 +71,7 @@ class Column{
         const int getsize();
 
         // Count number of rows with each unique value of variable
-        Column value_counts();
+        unordered_map<int, int> value_counts();
     
     private:
         // Column values
