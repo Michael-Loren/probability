@@ -2,6 +2,8 @@
 using namespace std;
 using namespace pandas;
 
+
+
 int Column::count = random_device{}();
 
 /**
@@ -46,11 +48,10 @@ Column::operator std::vector<int>(){
 //     return mask;
 // }
 
-auto Column::operator>(int value){
-    const int something = 4;
-    std::bitset<something> mask = 0;
+boost::dynamic_bitset<> Column::operator>(int value){
+    boost::dynamic_bitset<> mask(size);
     for (int i = 0; i < size; i++) {
-        mask |= (rows[i] > value) << i;
+        mask[i] = rows[i] > value;
     }
     return mask;
 }
@@ -63,10 +64,10 @@ auto Column::operator>(int value){
 //     return mask;
 // }
 
-unsigned int Column::operator<(int value){
-    unsigned int mask = 0;
+boost::dynamic_bitset<> Column::operator<(int value){
+    boost::dynamic_bitset<> mask(size);
     for (int i = 0; i < size; i++) {
-        mask |= (rows[i] < value) << i;
+        mask[i] = rows[i] < value;
     }
     return mask;
 }
@@ -79,10 +80,10 @@ unsigned int Column::operator<(int value){
 //     return mask;
 // }
 
-unsigned int Column::operator>=(int value){
-    unsigned int mask = 0;
+boost::dynamic_bitset<> Column::operator>=(int value){
+    boost::dynamic_bitset<> mask(size);
     for (int i = 0; i < size; i++) {
-        mask |= (rows[i] >= value) << i;
+        mask[i] = rows[i] >= value;
     }
     return mask;
 }
@@ -95,10 +96,10 @@ unsigned int Column::operator>=(int value){
 //     return mask;
 // }
 
-unsigned int Column::operator<=(int value){
-    unsigned int mask = 0;
+boost::dynamic_bitset<> Column::operator<=(int value){
+    boost::dynamic_bitset<> mask(size);
     for (int i = 0; i < size; i++) {
-        mask |= (rows[i] <= value) << i;
+        mask[i] = rows[i] <= value;
     }
     return mask;
 }
@@ -111,10 +112,10 @@ unsigned int Column::operator<=(int value){
 //     return mask;
 // }
 
-unsigned int Column::operator==(int value){
-    unsigned int mask = 0;
+boost::dynamic_bitset<> Column::operator==(int value){
+    boost::dynamic_bitset<> mask(size);
     for (int i = 0; i < size; i++) {
-        mask |= (rows[i] == value) << i;
+        mask[i] = rows[i] == value;
     }
     return mask;
 }
@@ -127,17 +128,13 @@ unsigned int Column::operator==(int value){
 //     return mask;
 // }
 
-unsigned int Column::operator!=(int value){
-    unsigned int mask = 0;
+boost::dynamic_bitset<> Column::operator!=(int value){
+    boost::dynamic_bitset<> mask(size);
     for (int i = 0; i < size; i++) {
-        mask |= (rows[i] != value) << i;
+        mask[i] = rows[i] != value;
     }
     return mask;
 }
-
-
-
-
 
 void Column::print(){
     for (auto &i : rows)
@@ -152,10 +149,10 @@ void Column::print(){
  *
  * @param rows Rows that are selected
  */
-Column Column::operator[](unsigned int mask){
+Column Column::operator[](boost::dynamic_bitset<> mask){
     vector<int> selected;
     for (int i = 0; i < size; i++) {
-        if (mask & (1 << i)) {
+        if (mask[i]) {
             selected.push_back(this->rows[i]);
         }
     }

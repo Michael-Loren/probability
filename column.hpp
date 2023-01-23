@@ -8,7 +8,7 @@
 #include <map>
 #include <random>
 #include <algorithm>
-#include <bitset>
+#include <boost/dynamic_bitset.hpp>
 #include "pandas.hpp"
 
 using std::vector;
@@ -47,16 +47,16 @@ class Column{
         operator vector<int>();
 
         // Bool Masking and Operator Functions
-        auto operator>(int value);
-        unsigned int operator<(int value);
-        unsigned int operator>=(int value);
-        unsigned int operator<=(int value);
-        unsigned int operator==(int value);
-        unsigned int operator!=(int value);
+        boost::dynamic_bitset<> operator>(int value);
+        boost::dynamic_bitset<> operator<(int value);
+        boost::dynamic_bitset<> operator>=(int value);
+        boost::dynamic_bitset<> operator<=(int value);
+        boost::dynamic_bitset<> operator==(int value);
+        boost::dynamic_bitset<> operator!=(int value);
 
 
         // Return Elements that meet an operator condition.
-        Column operator[](unsigned int mask);
+        Column operator[](boost::dynamic_bitset<> mask);
 
         // Return rows {1, 2, 3, 4}
         Column operator[](vector<int> rows);

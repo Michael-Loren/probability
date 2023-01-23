@@ -6,6 +6,7 @@
 #include <map>
 #include "column.hpp"
 #include "pandas.hpp"
+#include <boost/dynamic_bitset.hpp>
 
 
 using namespace std;
@@ -51,7 +52,7 @@ class Dataframe{
     Column operator[](string name);
 
     // Return the dataframe of rows for which the mask is true.
-    Dataframe operator[](unsigned int mask);
+    Dataframe operator[](boost::dynamic_bitset<> mask);
 
     void rowadd(vector<int> row);
     void remove(int index);
