@@ -74,6 +74,8 @@ Dataframe::Dataframe(int rowNum, int colNum, vector<double> weights, vector<int>
 
 // Create a Dataframe from a vector of columns.
 //potentially dangerous because columns could maybe be of different sizes?
+
+// NOT IMPLEMENTED
 Dataframe::Dataframe(vector<Column> newcols) : colnum(newcols.size()), rownum(newcols.at(0).getsize()), cols(newcols) {
     int currentsize = newcols.at(0).getsize();
     for (Column &c : newcols){
@@ -85,7 +87,7 @@ Dataframe::Dataframe(vector<Column> newcols) : colnum(newcols.size()), rownum(ne
     }
 };
 
-
+// Return the vector of Columns
 Dataframe::operator vector<Column>(){
     return cols;
 }
